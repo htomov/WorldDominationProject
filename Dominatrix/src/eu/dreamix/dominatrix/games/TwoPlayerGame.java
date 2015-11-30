@@ -1,4 +1,11 @@
-package eu.dreamix.dominatrix;
+package eu.dreamix.dominatrix.games;
+
+import eu.dreamix.dominatrix.Board;
+import eu.dreamix.dominatrix.Game;
+import eu.dreamix.dominatrix.GameResult;
+import eu.dreamix.dominatrix.Intellect;
+import eu.dreamix.dominatrix.Move;
+import eu.dreamix.dominatrix.PlayerResult;
 
 public abstract  class TwoPlayerGame implements Game{
 
@@ -11,7 +18,6 @@ public abstract  class TwoPlayerGame implements Game{
 	
 	@Override
 	public PlayerResult[] play(Intellect... players) {
-		// TODO Auto-generated method stub
 		player1=players[0];
 		player2=players[1];
 	
@@ -21,8 +27,8 @@ public abstract  class TwoPlayerGame implements Game{
 		GameResult moveResult = GameResult.NOT_OVER;
 		Intellect currentPlayer = player1;
 		while(moveResult==GameResult.NOT_OVER){
-			int[] availableMoves = getAvailableMoves();
-			int move = currentPlayer.getMove(board, availableMoves);
+			Move[] availableMoves = getAvailableMoves();
+			Move move = currentPlayer.getMove(board, availableMoves);
 			moveResult = makeMove(move);
 			currentPlayer= currentPlayer==player1 ?  player2 : player1;
 		}
@@ -42,9 +48,9 @@ public abstract  class TwoPlayerGame implements Game{
 		return new PlayerResult[]{ result1, result2 };
 	}
 
-	protected abstract GameResult  makeMove(int move) ;
+	protected abstract GameResult  makeMove(Move move) ;
 
-	protected abstract int[] getAvailableMoves();
+	protected abstract Move[] getAvailableMoves();
 
 	protected abstract int getBoardSize() ;
 

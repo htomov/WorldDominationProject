@@ -2,7 +2,7 @@ package eu.dreamix.dominatrix;
 
 public interface Intellect {
 	
-	public int getMove(Board board, int[] availableMoves);
+	public Move getMove(Board board, Move[] availableMoves);
 	
 	public void notifyOfResult(GameResult result);
 	
